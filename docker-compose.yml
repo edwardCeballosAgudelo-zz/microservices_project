@@ -4,6 +4,15 @@ services:
   monolithic:
     build: ./monolithic
 
+  users:
+    build:  ./microservices/user-service
+
+  books:
+    build:  ./microservices/car-service
+
+  cars:
+    build:  ./microservices/book-service
+
   nginx:
     image: nginx:latest
     ports:
@@ -12,3 +21,6 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - monolithic
+      - users
+      - books
+      - cars
